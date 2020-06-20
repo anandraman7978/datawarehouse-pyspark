@@ -1,0 +1,71 @@
+i94data_fact
+ |-- CoC: integer (nullable = true)  -- Country of citizenship
+ |-- CoR: integer (nullable = true)  -- Country of residence
+ |-- PoE: string (nullable = true)   -- Port of Entry
+ |-- landing_state: string (nullable = true)  --  Landing state in US
+ |-- age: integer (nullable = true)  -- age
+ |-- visa_issued_in: string (nullable = true)  -- Department of State where Visa was issued
+ |-- occup: string (nullable = true) -- Occupation of visitor
+ |-- biryear: integer (nullable = true) -- Year of Birth
+ |-- gender: string (nullable = true)  -- Gender
+ |-- airline: string (nullable = true) -- Airline travelled
+ |-- admnum: integer (nullable = true) -- Admission Number
+ |-- fltno: string (nullable = true)  -- Flight Number
+ |-- visatype: string (nullable = true) -- Visa Type
+ |-- arrival_mode: string (nullable = true)  -- Mode of Travel
+ |-- visit_purpose: string (nullable = true) -- Purpose of visit
+ |-- arrival_dt: date (nullable = true)  -- Arrival Date
+ |-- departure_dt: date (nullable = true) -- Departure Date
+ |-- DaysinUS: integer (nullable = true) -- Number of days stayed in US
+ |-- added_to_i94: date (nullable = true) -- Date added to i94 record
+ |-- allowed_until: date (nullable = true) -- visa expiry date
+ |-- entry_exit: string (nullable = false) -- Entry/Exit from US
+
+visatype_dim
+ |-- visatype: string (nullable = true)  -- Type of Visa
+ |-- description: string (nullable = true) -- Description of Visa
+
+USPoE_dim
+ |-- code: string (nullable = true)  --  Code
+ |-- citystate: string (nullable = true)  -- Contains city and state names
+ |-- city: string (nullable = true) -- city split from citystate
+ |-- state: string (nullable = true)  -- state splite from citystate
+
+uszips_dim
+ |-- zip: long (nullable = true)  -- 5 digit zip code assigned by U.S. Postal Service
+ |-- lat: double (nullable = true)  -- lattitude of zipcode 
+ |-- lng: double (nullable = true)  -- longtitude of zipcode
+ |-- city: string (nullable = true) -- City name
+ |-- state_id: string (nullable = true)  -- state abbreviation
+ |-- state_name: string (nullable = true) -- State Name
+ |-- population: long (nullable = true)  -- Estimate of zip code population
+ |-- density: double (nullable = true)  -- Estimate population/square kilometer
+ |-- county_fips: long (nullable = true)  -- Zip's primary county in the FIPS format.
+ |-- county_name: string (nullable = true) -- Name of county_fips
+
+temper_dim
+ |-- dt: timestamp (nullable = true)  --  Timestamp of the event
+ |-- AverageTemperature: double (nullable = true)  -- average temparature in city
+ |-- AverageTemperatureUncertainty: double (nullable = true)  -- Degree of uncertainity in temparature
+ |-- City: string (nullable = true)  --  city Name
+ |-- Country: string (nullable = true)  -- Country Name
+ |-- Latitude: string (nullable = true)  -- Lattitude
+ |-- Longitude: string (nullable = true) -- Longtitude
+
+alc_dim
+ |-- code: string (nullable = true)  -- Unique Code
+ |-- description: string (nullable = true)  -- Name of airliner
+
+USstatecode_dim
+ |-- code: string (nullable = true)  -- 2 Character state cocde
+ |-- state: string (nullable = true) -- State name
+ |-- status: string (nullable = true) -- Type of State
+ |-- Unnamed_3: string (nullable = true) -- Unamed Misselanous
+
+visapost_dim
+ |-- location: string (nullable = true)  -- Location name where visa was issued
+ |-- code: string (nullable = true)  -- 3 character code of the state
+
+country_dim
+ |-- code: string (nullable = true)   -- Unique Code
+ |-- country: string (nullable = true)  --  Name of country

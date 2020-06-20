@@ -1,0 +1,20 @@
+Top Students travelling to US from other countries:
+SELECT  country_dim.country as country ,count(i94data_fact.visatype) as visitors FROM i94data_fact inner join country_dim on i94data_fact.COC=country_dim.code where i94data_fact.visatype in ('F1','F2','F3') group by country_dim.country order by count(i94data_fact.visatype) desc limit 10
+
+
+Top Airlines landing in US ports
+SELECT  country_dim.country as country ,count(i94data_fact.visatype) as visitors FROM i94data_fact inner join country_dim on i94data_fact.COC=country_dim.code where i94data_fact.visatype in ('F1','F2','F3') group by country_dim.country order by count(i94data_fact.visatype) desc limit 10
+
+
+
+Top Visa Issuing locations into US
+SELECT  visapost_dim.location as location,count(i94data_fact.visa_issued_in) as visitors FROM i94data_fact inner join visapost_dim on i94data_fact.visa_issued_in=visapost_dim.code group by visapost_dim.location order by count(i94data_fact.visa_issued_in)  desc limit 10
+
+
+
+Temparature Trend of a City
+select year(dt),avg(AverageTemperature) from temper_dim inner join uszips_dim on temper_dim.city=uszips_dim.city where temper_dim.city='Ann Arbor' group by year(dt) order by year(dt)
+
+
+Most Visited State in US:
+select state,count(i94data_fact.visatype) as visitors FROM i94data_fact inner join USstatecode_dim on i94data_fact.landing_state= USstatecode_dim.code group by state order by count(i94data_fact.visatype) desc limit 10 
